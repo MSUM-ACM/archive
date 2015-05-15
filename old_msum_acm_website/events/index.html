@@ -1,0 +1,160 @@
+---
+layout: default
+title: events
+---
+
+{% include navigation.html param='<a href="/events">workshops &amp; events</a>' %}
+
+<!--<div id="rss-events">
+  <p>
+    <a href="./feed.xml">Subscribe to new events feed via RSS</a>
+  </p>
+</div>-->
+<div id="article-list">
+{% for event in site.categories.events %}
+{% assign smonth = site.time | date: "%m" | times:30 %}
+  {% assign pmonth = event.date | date: "%m" | times:30 %}
+  {% assign smonth = site.time | date: "%d" | plus:smonth %}
+  {% assign smonth = site.time | date: "%Y" | minus:2013 | times:365 | plus:smonth %}
+  {% assign pmonth = event.date | date: "%d" | plus:pmonth %}
+  {% assign pmonth = event.date | date: "%Y" | minus:2013 | times:365 | plus:pmonth %}
+  {% assign datediff = smonth | minus:pmonth %}
+  {% if datediff <= 0 and datediff > -7 and currwork != 0 %}
+  <div class="article-separator"><h2>Current Workshop</h2></div>
+  {% assign currwork = 0 %}
+  <div class="article-each article-event article-current">
+    <h1>{{ event.title }}</h1>
+    <div id="meta">
+      <p id="meta-primary">{{ event.author }}</p>
+      {% if event.date %}
+      <p class="meta-date">
+      {% assign h = event.date | date: "%-H" | plus:6 %}
+      {% if h >= 12 %} {% assign TOD = "pm" %} {% else %} {% assign TOD = "am" %}{% endif %}
+      {% assign hofm = h | modulo:12 %}
+          {% if hofm == 0 %}{% assign dmod = 13 %}{% else %}{% assign dmod = 12 %}{% endif %}
+        {{ event.date | date_to_string }} at {{ h | modulo:dmod }}:{{ event.date | date: "%M" }} {{ TOD }} 
+      </p>
+      {% endif %}
+      {% if event.location %}
+      <p class="meta-location">
+      {{ event.location }}
+      </p>
+      {% endif %}
+    </div><!-- /meta -->
+
+      {% if event.presentation-data %}
+      <div class="event-page-presentation-data">
+        <p><a href="{{ event.presentation-data }}">Read Accompanying Material</a></p>
+      </div><!-- /event-page-presentation-data -->
+      {% endif %}
+
+      <div class="event-page-description">
+        {{ event.content }}
+      </div><!-- /footer-event-description -->
+  </div><!-- /article-each -->
+  {% endif %}
+{% endfor %}
+{% if currwork != 0 %}
+  <p>No Workshop This Week</p>
+{% endif %}
+{% assign separator = 1 %}
+{% for event in site.categories.events reversed %}
+{% assign smonth = site.time | date: "%m" | times:30 %}
+  {% assign pmonth = event.date | date: "%m" | times:30 %}
+  {% assign smonth = site.time | date: "%d" | plus:smonth %}
+  {% assign smonth = site.time | date: "%Y" | minus:2013 | times:365 | plus:smonth %}
+  {% assign pmonth = event.date | date: "%d" | plus:pmonth %}
+  {% assign pmonth = event.date | date: "%Y" | minus:2013 | times:365 | plus:pmonth %}
+  {% assign datediff = smonth | minus:pmonth %}
+  {% if datediff <= -7 %}
+  {% if separator != 0 %}
+  <div class="article-separator"><h2>Upcoming Workshops</h2></div>
+  {% assign separator = 0 %}
+  {% endif %}
+  <div class="article-each article-event article-upcoming">
+    <h1>{{ event.title }}</h1>
+    <div id="meta">
+      <p id="meta-primary">{{ event.author }}</p>
+      {% if event.date %}
+      <p class="meta-date">
+      {% assign h = event.date | date: "%-H" | plus:6 %}
+      {% if h >= 12 %} {% assign TOD = "pm" %} {% else %} {% assign TOD = "am" %}{% endif %}
+      {% assign hofm = h | modulo:12 %}
+          {% if hofm == 0 %}{% assign dmod = 13 %}{% else %}{% assign dmod = 12 %}{% endif %}
+        {{ event.date | date_to_string }} at {{ h | modulo:dmod }}:{{ event.date | date: "%M" }} {{ TOD }} 
+      </p>
+      {% endif %}
+      {% if event.location %}
+      <p class="meta-location">
+      {{ event.location }}
+      </p>
+      {% endif %}
+
+    </div><!-- /meta -->
+
+      {% if event.presentation-data %}
+      <div class="event-page-presentation-data">
+        <p><a href="{{ event.presentation-data }}">Read Accompanying Material</a></p>
+      </div><!-- /event-page-presentation-data -->
+      {% endif %}
+
+      <div class="event-page-description">
+        {{ event.content }}
+      </div><!-- /footer-event-description -->
+  </div><!-- /article-each -->
+  {% endif %}
+{% endfor %}
+{% if separator == 1 %}
+  <p>No Upcoming Workshops</p>
+{% endif %}
+{% assign separator = 1 %}
+{% for event in site.categories.events %}
+{% assign smonth = site.time | date: "%m" | times:30 %}
+  {% assign pmonth = event.date | date: "%m" | times:30 %}
+  {% assign smonth = site.time | date: "%d" | plus:smonth %}
+  {% assign smonth = site.time | date: "%Y" | minus:2013 | times:365 | plus:smonth %}
+  {% assign pmonth = event.date | date: "%d" | plus:pmonth %}
+  {% assign pmonth = event.date | date: "%Y" | minus:2013 | times:365 | plus:pmonth %}
+  {% assign datediff = smonth | minus:pmonth %}
+  {% if datediff > 0 %}
+  {% if separator != 0 %}
+  <div class="article-separator"><h2>Past Workshops</h2></div>
+  {% assign separator = 0 %}
+  {% endif %}
+  <div class="article-each article-event article-past">
+    <h1>{{ event.title }}</h1>
+    <div id="meta">
+      <p id="meta-primary">{{ event.author }}</p>
+      {% if event.date %}
+      <p class="meta-date">
+      {% assign h = event.date | date: "%-H" | plus:6 %}
+      {% if h >= 12 %} {% assign TOD = "pm" %} {% else %} {% assign TOD = "am" %}{% endif %}
+      {% assign hofm = h | modulo:12 %}
+          {% if hofm == 0 %}{% assign dmod = 13 %}{% else %}{% assign dmod = 12 %}{% endif %}
+        {{ event.date | date_to_string }} at {{ h | modulo:dmod }}:{{ event.date | date: "%M" }} {{ TOD }} 
+      </p>
+      {% endif %}
+      {% if event.location %}
+      <p class="meta-location">
+      {{ event.location }}
+      </p>
+      {% endif %}
+
+    </div><!-- /meta -->
+
+      {% if event.presentation-data %}
+      <div class="event-page-presentation-data">
+        <p><a href="{{ event.presentation-data }}">Read Accompanying Material</a></p>
+      </div><!-- /event-page-presentation-data -->
+      {% endif %}
+
+      <div class="event-page-description">
+        {{ event.content }}
+      </div><!-- /footer-event-description -->
+  </div><!-- /article-each -->
+  {% endif %}
+{% endfor %}
+{% if separator == 1 %}
+  <p>No Past Workshops</p>
+{% endif %}
+</div><!-- /article-list -->

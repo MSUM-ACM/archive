@@ -1,0 +1,12 @@
+---
+layout: post
+title:  "The Title"
+date:   2015-02-21 12:58:10 #not important for events
+author: "The Author" 
+location: BR 165   #room
+duration-in-minutes: 60   #duration
+presentation-data:    #provide link to presentation data
+categories: events   #events,articles,info
+---
+
+#description

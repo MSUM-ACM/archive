@@ -1,0 +1,22 @@
+---
+layout: default
+title: get-involved
+---
+
+{% include navigation.html param='/ <a href="/community">community</a> / <a href=".">get involved</a>' %}
+
+<div id="article-list">
+<h4 id="page-subtitle">Looking to get involved but don't know how? Here are some great suggestions!</h4>
+<div class="dash-line"></div>
+{% for idea in site.data.involve %}
+<div>
+<h2>{{ idea.title }}</h2>
+<p>{{ idea.description }}</p>
+</div>
+{% endfor %}
+<div class="dash-line"></div>
+<h5>Contact one of the officers, or find us in the linux lab to show your interest!</h5>
+ <div class="box-link">
+    <p><a href="/officers">Officers</a></p>
+ <div>
+</div><!-- /article-list -->

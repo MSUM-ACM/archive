@@ -1,0 +1,45 @@
+---
+layout: default
+title: research
+---
+
+{% include navigation.html param='/ <a href="/community">community</a> / <a href="/student-projects">student projects</a> / <a href="/research">research</a>' %}
+
+<div id="article-list">
+<h4 id="page-subtitle">Checkout some of the cool research projects your fellow students have been working on!</h4>
+<div class="dash-line"></div>
+{% assign rcount = 0 %}
+{% for research in site.categories.research %}
+{% assign rcount = 1 %}
+<div>
+{% if research.expand == true %}
+<p>Looking for more team members!</p>
+{% endif %}
+<h2>{{ research.title }}</h2>
+<div id="meta">
+<h3>{{ research.leader }}</h3>
+<h3>{{ research.team }}</h3>
+</div>
+<div class="event-page-presentation-data">
+    <p><a href="{{ research.url }}">More Info</a></p>
+ </div>
+<p>{{ research.summary }}</p>
+</div>
+{% endfor %}
+{% if rcount == 0 %}
+<p>No research projects yet</p>
+<div class="dash-line"></div>
+<h3>You could be the first one!</h3>
+<p>Contact one of the officers, or find us in the linux lab and let us know about your research</p>
+ <div class="box-link">
+    <p><a href="/officers">Officers</a></p>
+ <div>
+{% else %}
+<div class="dash-line"></div>
+<h3>You could see your research here!</h3>
+<p>Contact one of the officers, or find us in the linux lab and let us know about your research</p>
+ <div class="box-link">
+    <p><a href="/officers">Officers</a></p>
+ <div>
+ {% endif %}
+</div><!-- /article-list -->

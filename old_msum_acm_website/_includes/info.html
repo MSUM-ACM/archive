@@ -1,0 +1,32 @@
+{% for info in site.categories.info limit:1 %}
+  {% assign smonth = site.time | date: "%m" | times:30 %}
+  {% assign pmonth = info.date | date: "%m" | times:30 %}
+  {% assign smonth = site.time | date: "%d" | plus:smonth %}
+  {% assign smonth = site.time | date: "%Y" | minus:2013 | times:365 | plus:smonth %}
+  {% assign pmonth = info.date | date: "%d" | plus:pmonth %}
+  {% assign pmonth = info.date | date: "%Y" | minus:2013 | times:365 | plus:pmonth %}
+  {% assign datediff = smonth | minus:pmonth %}
+  {% if datediff < 0 and datediff > -30 %}
+    <div class="info">
+      <div class="info-event">
+        <h2>Reminders</h2>
+        <div class="info-blob">
+          <h3 class="info-title">{{ info.title }}</h3>
+          <h3 class="info-date">{% assign h = info.date | date: "%-H" | plus:6 %}
+          {% if h >= 12 %} {% assign TOD = "pm" %} {% else %} {% assign TOD = "am" %}{% endif %}
+          {% assign hofm = h | modulo:12 %}
+          {% if hofm == 0 %}{% assign dmod = 13 %}{% else %}{% assign dmod = 12 %}{% endif %}
+            {{ info.date | date_to_string }} at {{ h | modulo:dmod }}:{{ info.date | date: "%M" }} {{ TOD }} </h3>
+            {% if info.location %}
+            <h3 class="info-location">
+            {{ info.location }}
+            </h3>
+          {% endif %}
+          <div class="info-description">
+            {{ info.content }}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}

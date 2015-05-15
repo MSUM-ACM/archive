@@ -1,0 +1,21 @@
+---
+layout: post
+title:  "IDE"
+date:  2015-02-24 17:00:00
+author: "Jeff McNertney"
+location: BR 165
+duration-in-minutes: 60
+presentation-data: /presentation-data/WS_IDE.pdf
+categories: events
+---
+
+Integrated Development Environments (IDE) are software applications that 
+provide a complete set of tools for computer programmers for software 
+development. Most IDE normally consist of a source code editor, build 
+automation tools, and a debugger, but is not limited to those options. 
+In this workshop, you will be introduced to common IDE such as Eclipse, 
+Visual Studio, and Android Studio. You will learn why an IDE is used and 
+some advantages of using an IDE such as code completion, debugger, 
+code correction, and much more. This is a great opportunity to come 
+learn from a current software developer about a tool that every software 
+developer will use at some point in their career.

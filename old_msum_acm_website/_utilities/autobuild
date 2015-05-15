@@ -1,0 +1,23 @@
+gitmsg="AUTOBUILD: Build date: $(date --rfc-3339='seconds')"
+logpath="log"
+utilities="_utilities"
+msumpath="/home/jake/msumacm"
+pushd $msumpath/$utilities 1> /dev/null
+git checkout -f
+git fetch origin
+git rebase
+git show -s --format=%ci | grep $(date --rfc-3339='date')
+if [ $? -ne 0 ]; then
+	if ! [ -f $logpath/dailybuild ];then
+		touch $logpath/dailybuild
+	fi
+	echo "Build Date: $(date --rfc-3339='seconds')"  >> $logpath/dailybuild
+	tail $logpath/dailybuild >> $logpath/dailybuild.temp
+	mv $logpath/dailybuild.temp $logpath/dailybuild
+	git add $logpath/dailybuild
+	git commit -m "AUTOBUILD: Build date: $(date --rfc-3339='seconds')"
+	git push origin #need to set up rsa keys
+fi 
+
+popd 1> /dev/null
+echo "AUTOBUILD: Build date: $(date --rfc-3339='seconds')"

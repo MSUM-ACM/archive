@@ -1,0 +1,65 @@
+# Linux
+Description - Linux is an operating system. 
+Presented - Dmitrii Mudrechenko
+Date - 09/30/14
+
+## MArkdet Share
+Currently the market share of Linux on Desktops is less then 2%.
+Now the interesting part: 
+Android's(Linux) Mobile Share 50-80%
+Servers: 58-78%
+Super Computers: 98.0%
+
+## It is all cool, but why use Linux?
+- Free and open source
+- Secure - after installing you do not need to care about antiviruses or firewall
+- Stable - no need to reboot (the way it is designed, except for kernel updates)
+- Lightweight - runs on toasters 
+
+## Distribution
+No system called Linux - only distributions(flavors)
+Distributions:
+Patrick Volkerding  - MSUM graduate - authored Slackware distro
+
+## Debian
+We all know Ubuntu
+Today I will demonstrate another flavor - Debian:
+Ubuntu is based off Debian
+Debian - only free and open source software
+
+## Commands
+- Navigation/file operations
+
+    cd, mkdir, rm, mv, cp, pwd
+
+- Utils
+
+    date, cal, import imagefile, man, ssh, scp
+
+- Funny stuff
+
+    sudo apt-get moo
+    sudo aptitude moo
+    sl
+    telnet towel.blinkenlights.nl
+
+- System/Network
+
+    dmesg
+    traceroute
+    nslookup google.com
+    working with files
+    cat, cmp, diff
+    head, tail, less, look  #(line starts with a symbol)
+
+- Update/power
+
+    sudo apt-get update
+    sudo apt-get upgrade
+    sudo reboot, shutdown, pm-suspend
+
+- Misc
+
+    startx -- :8 ?
+    ssh into smaug
+    scp

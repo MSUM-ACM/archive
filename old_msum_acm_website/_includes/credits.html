@@ -1,0 +1,44 @@
+<div id="credits">
+  <h2>Credits</h2>
+
+    <!--
+    <div class="credits-blob">
+      <h3>The Article's Author</h3>
+      <p>John AppleSeed</p>
+    </div>
+    -->
+    <!-- /credits-blob -->
+
+    <div class="credits-blob">
+
+      <h3>Blog Editors &amp; Contact</h3>
+      <p>
+      {% for editor in site.data.blogeditors %}
+        <a href="mailto:{{ editor.email }}" 
+          title="Mail to {{ editor.name }}">{{ editor.name }}</a>
+
+        {% unless forloop.last %}
+          <br />
+        {% endunless %}
+
+      {% endfor %}
+      </p>
+
+    </div><!-- /credits-blob -->
+
+    <div class="credits-blob">
+      <h3>Design</h3>
+      <!-- <p><a href="{{ site.url }}/officers">Sri Kadimisetty</a></p> -->
+
+      <p>
+      {% for designer in site.data.designers %}
+        <a href="mailto:{{ designer.email }}" 
+          title="Mail to {{ designer.name }}">{{ designer.name }}</a>
+        {% unless forloop.last %}
+          <br />
+        {% endunless %}
+        {% endfor %}
+      </p>
+
+    </div><!-- /credits-blob -->
+</div><!-- /credits -->

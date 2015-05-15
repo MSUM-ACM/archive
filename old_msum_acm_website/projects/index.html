@@ -1,0 +1,45 @@
+---
+layout: default
+title: projects
+---
+
+{% include navigation.html param='/ <a href="/community">community</a> / <a href="/student-projects">student projects</a> / <a href="/projects">projects</a>' %}
+
+<div id="article-list" class="article">
+<h4 id="page-subtitle">Checkout some of the cool projects your fellow students have been working on!</h4>
+<div class="dash-line"></div>
+{% assign pcount = 0 %}
+{% for project in site.categories.projects %}
+{% assign pcount = 1 %}
+<div>
+{% if project.expand == true %}
+<p>Looking for more team members!</p>
+{% endif %}
+<h2>{{ project.title }}</h2>
+<div id="meta">
+<h3>{{ project.leader }}</h3>
+<h3>{{ project.team }}</h3>
+</div>
+<div class="event-page-presentation-data">
+    <p><a href="{{ project.url }}">More Info</a></p>
+ </div>
+<p>{{ project.summary }}</p>
+</div>
+{% endfor %}
+{% if pcount == 0 %}
+<p>No projects yet</p>
+<div class="dash-line"></div>
+<h3>You could be the first one!</h3>
+<p>Contact one of the officers, or find us in the linux lab and let us know about your project</p>
+ <div class="box-link">
+    <p><a href="/officers">Officers</a></p>
+ <div>
+{% else %}
+<div class="dash-line"></div>
+<h3>You could see your project here!</h3>
+<p>Contact one of the officers, or find us in the linux lab and let us know about your project</p>
+ <div class="box-link">
+    <p><a href="/officers">Officers</a></p>
+ <div>
+ {% endif %}
+</div><!-- /article-list -->

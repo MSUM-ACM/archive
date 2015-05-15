@@ -1,0 +1,17 @@
+ssh -T git@github.com
+Try this. If it prompts you for a password then you don't have this set 
+up
+
+ssh-keygen -p
+[enter]
+[passkey]
+[passkeyagain]
+copy contents excluding host to ssh keys on github
+
+then try ssh -T git@github.com again
+if you get Agent admitted failure to sign ...
+then do ssh-add 
+[passkey]
+
+then try ssh -T git@github.com
+should work now

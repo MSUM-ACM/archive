@@ -1,0 +1,10 @@
+---
+layout: post
+title:  "Meeting"
+date:   2015-03-04 12:00:00
+important: false
+topics: "Workshops, Web Design Series, MICS Signup"
+---
+New workshops added to the website, make sure you check them out!
+Upcoming series on Web Development and Design.
+MICS Signup date is comming up fast. Not too late to signup!

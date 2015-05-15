@@ -1,0 +1,45 @@
+---
+layout: default
+title: "MSUM ACM"
+---
+
+
+{% include billboard.html %}
+
+{% include info.html %}
+
+{% include current-workshop.html %}
+
+<div class="extras">
+  <div class="archive-link"> <a href="/events/">Checkout All workshops &amp; events</a>
+      </div><!-- /archive-link -->
+      {% include events.html %}
+    </div><!-- /extras -->
+
+<div class="extras">
+  <div class="archive-link"> <a href="/articles/">Visit the community to read all articles</a>
+      </div><!-- /archive-link -->
+    </div><!-- /extras -->
+{% for post in site.categories.article limit:3 %}
+    <div class="article promo{% if forloop.index == 1 %} first-article{% endif %}">
+      <h1>{{ post.title }}</h1>
+      <div id="meta">
+        <p id="meta-primary">{{ post.author }}</p>
+      </div><!-- /meta -->
+
+
+      <div class="article-content">
+        {{ post.excerpt }}
+      </div><!-- /article-content -->
+
+
+    </div><!-- /article -->
+
+    <div class="promo-read-button"> 
+      <!-- <a href="{{ post.url }}">Read this article</a> --> 
+      <a href="{{ post.url }}" data-minutes="{{ post.minutes-to-read }}">read</a>
+    </div><!-- /promo -->
+
+
+
+{% endfor %}

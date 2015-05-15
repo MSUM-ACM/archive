@@ -1,0 +1,29 @@
+---
+layout: default
+title: positions
+---
+
+{% include navigation.html param='/ <a href="/community">community </a> / <a href="/acm">acm</a> / <a href="/officers">officers</a> / <a href="/officers/positions">positions</a>' %}
+
+<div id="article-list">
+<h2>Officer Elections take place at the start of every semester.</h2>
+<h3>Rules about being an officer</h3>
+<div id="small-text">
+<p>You must be a student at MSUM</p>
+<p>You can run for as many terms as you wish</p>
+<p>You cannot hold office if it is your last semester at MSUM</p>
+<p>Terms last for one semester and you must get re-elected inorder to stay in office</p>
+
+<p>If it is your first semester at MSUM, you cannot be elected Presedent unless 100% of the votes are in your favor</p> 
+</div>
+  {% for position in site.data.officerdescriptions %}
+  <div class="article-each">
+    <h2>{{ position.position }}</h2>
+    <div class="event-page-description">
+      {{ position.responsibilities }}
+    </div>
+  </div><!-- /article-each -->
+  {% endfor %}
+
+
+</div><!-- /article-list -->

@@ -1,0 +1,21 @@
+---
+layout: default
+title: acm
+---
+
+{% include navigation.html param='/ <a href="/community">community</a> / <a href=".">acm</a>' %}
+
+<ul id="icon-nav">
+<a id="officers" href="/officers"><li>Officers</li></a>
+<a id="mail" href="/mailinglist"><li>Mailing List</li></a>
+<a id="meetings" href="/meetings"><li>Meetings</li></a>
+</ul>
+<div id="article-list">
+	<div id="meeting-info">
+	{% for MInfo in site.data.meetinginfo %}
+        <p>Meetings held on {{ MInfo.day }} {{ MInfo.time }} in {{ MInfo.location }}</p>
+      {% break %}
+    {% endfor %}
+    </div>
+
+</div><!-- /article-list -->

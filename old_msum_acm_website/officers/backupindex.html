@@ -1,0 +1,22 @@
+---
+layout: default
+title: archives
+---
+
+{% include navigation.html param='<a href="/officers">officers</a>' %}
+
+<div id="article-list">
+
+  {% for officer in site.data.officers %}
+  <div class="article-each">
+    <h2>{{ officer.name }}</h2>
+    <div id="meta">
+      <p id="meta-primary">{{ officer.email }}</p>
+      <p id="meta-primary">{{ officer.role }}</p>
+      <p id="meta-secondary">{{ officer.year }}</p>
+    </div><!-- /meta -->
+  </div><!-- /article-each -->
+  {% endfor %}
+
+
+</div><!-- /article-list -->

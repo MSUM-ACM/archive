@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MSUM ACM</title>
+
+  <meta name="description" content="MSUM ACM">
+  <link rel="shortcut icon" href="/assets/img/penguin_superhero.ico"
+  <!-- Fonts -->
+  <link rel="stylesheet" href="/assets/fonts/bariol-family-stylesheet.css">
+  
+  <link rel="stylesheet" href="/css/stylesheet.css">
+
+</head>
+
+<body>
+  <div id="container">
+
+    {{ content }}
+
+    {% if page.title != "MSUM ACM" %}
+      {% if page.title != 'events' %}
+      
+        <div class="extras">
+          {% if page.article %}
+            <div class="archive-link"> 
+              <a href="/archives/">Visit the archive to read all articles</a>
+            </div><!-- /archive-link -->
+          {% endif %}
+          {% include events.html param=0 %}
+        </div><!-- /extras -->
+      {% endif %}
+      <div class="extras">
+        {% if page.title != 'events' %}
+          <div class="archive-link"> 
+            <a href="/events/">Checkout All workshops &amp; events</a>
+          </div><!-- /archive-link -->
+        {% endif %}
+        {% include participation.html %}
+      </div><!-- /extras -->
+
+      
+    {% else %}
+      <div class="extras">
+        {% include participation.html %}
+      </div>
+    {% endif %}
+    <div class="extras">
+       {% include credits.html %}
+     </div><!-- /extras -->
+     <div id="appendix">
+       <p><a href="/feed.xml">Subscribe to new events via RSS</a></p>
+    </div><!-- /appendix -->
+  </div><!-- /container -->
+
+
+
+  <!-- Scripts -->
+  {% include google-analytics.html %}
+
+</body>
+</html>

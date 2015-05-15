@@ -1,0 +1,28 @@
+---
+layout: default
+title: officers
+---
+
+{% include navigation.html param='/ <a href="/community">community </a> / <a href="/acm">acm</a> / <a href="/officers">officers</a>' %}
+<ul id="icon-nav-single">
+<a id="officers" href="/officers/positions"><li>Positions</li></a>
+</ul>
+<div id="article-list">
+{% assign mon = site.time | date: "%m" | plus:0 %}
+{% if mon <= 5 %}{% assign sem = "Spring" %}
+{% elsif mon > 5 and mon < 7 %}{% assign sem = "Summer" %}
+{% else %}{% assign sem = "Fall" %}
+{% endif %}
+  <h1>{{ sem }} {{ site.time | date: "%Y" }}</h1>
+  {% for officer in site.data.officers %}
+  <div class="article-each">
+    <h2>{{ officer.name }}</h2>
+    <div id="meta">
+      <p id="meta-primary">{{ officer.email }}</p>
+      <p id="meta-secondary">{{ officer.role }}</p>
+    </div><!-- /meta -->
+  </div><!-- /article-each -->
+  {% endfor %}
+
+
+</div><!-- /article-list -->

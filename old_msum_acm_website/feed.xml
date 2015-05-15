@@ -1,0 +1,41 @@
+---
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>{{ site.name | xml_escape }} Events</title>
+		<description>Event listing of MSUM's ACM Chapter</description>
+		<link>{{ site.url }}</link>
+		<atom:link href="{{ site.url }}/events/feed.xml" rel="self" type="application/rss+xml" />
+		{% for post in site.categories.events %}
+			{% assign smonth = site.time | date: "%m" | times:30 %}
+			{% assign pmonth = post.date | date: "%m" | times:30 %}
+			{% assign smonth = site.time | date: "%d" | plus:smonth %}
+			{% assign smonth = site.time | date: "%Y" | minus:2013 | times:365 | plus:smonth %}
+			{% assign pmonth = post.date | date: "%d" | plus:pmonth %}
+			{% assign pmonth = post.date | date: "%Y" | minus:2013 | times:365 | plus:pmonth %}
+			{% assign datediff = smonth | minus:pmonth %}
+			{% if datediff < 30  and datediff > -7 %}
+			<item>
+				<title>{{ post.title | xml_escape }}</title>
+				<description>
+					
+
+					{% assign h = post.date | date: "%-H" | plus:6 %}
+					{% if h >= 12 %} {% assign TOD = "pm" %} {% else %} {% assign TOD = "am" %}{% endif %}
+					{% assign hofm = h | modulo:12 %}
+          			{% if hofm == 0 %}{% assign dmod = 13 %}{% else %}{% assign dmod = 12 %}{% endif %}
+					&lt;p&gt;{% if post.date %}When: {{ post.date | date: "%A, %B %-d" | xml_escape }} at {{ h | modulo:dmod }}:{{ post.date | date: "%M" }} {{ TOD }} {% endif %}&lt;/p&gt;
+					&lt;p&gt;{% if post.location %}Location: {{ post.location | xml_escape }}{% endif %}&lt;/p&gt;
+					&lt;p&gt;{% if post.author %}Presenters: {{ post.author | xml_escape }}{% endif %}&lt;/p&gt;&lt;p /&gt;
+					{{ post.content | xml_escape }}
+				</description>
+				<pubDate>{{ post.date | date: "%a, %d %b %Y" }} {{ h }}:{{ post.date | date: "%M:%S %z" }}</pubDate>
+				<link>{{ site.url }}{{ post.url }}</link>
+				<guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
+			</item>
+			{% endif %}
+		{% endfor %}
+
+	</channel>
+</rss>

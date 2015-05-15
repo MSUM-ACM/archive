@@ -1,0 +1,25 @@
+- name: Dmitrii Mudrechenko
+  role: President
+  year: Sophomore
+  email: mudrechedm@mnstate.edu
+
+- name: Anthony Ferre
+  role: Vice President
+  year: Sophomore
+  email: nemmaouian@mnstate.edu
+
+- name: Jake Humphrey
+  role: Web Meister
+  year: Sophomore
+  email: humphreyja@mnstate.edu
+  
+- name: Kelvin Boatey
+  role: Secretary
+  year: Freshman
+  email: boateyke@mnstate.edu
+  
+- name: Stefan Nelson
+  role: Treasurer 
+  year: Freshman
+  email: nelsonste@mnstate.edu
+

@@ -1,0 +1,51 @@
+<!--Based on the date if it is a week before the workshop then the workshop will show up-->
+<div class="current-workshop">
+  <div class="cw-event">
+    <h2>Weekly Workshop</h2>
+    {% assign count = 0 %}
+    {% for event in site.categories.events %}
+      {% assign smonth = site.time | date: "%m" | times:30 %}
+      {% assign pmonth = event.date | date: "%m" | times:30 %}
+      {% assign smonth = site.time | date: "%d" | plus:smonth %}
+      {% assign smonth = site.time | date: "%Y" | minus:2013 | times:365 | plus:smonth %}
+      {% assign pmonth = event.date | date: "%d" | plus:pmonth %}
+      {% assign pmonth = event.date | date: "%Y" | minus:2013 | times:365 | plus:pmonth %}
+      {% assign datediff = smonth | minus:pmonth %}
+      {% if datediff <= 0 and datediff > -7 %}
+  
+        <div class="cw-event-blob">
+          <h3 class="cw-event-title">{{ event.title }}</h3>
+          <h3 class="cw-event-author">{{ event.author }}</h3>
+          {% if event.event-date %}
+          <h3 class="cw-event-date">
+          {% assign h = event.date | date: "%-H" | plus:6 %}
+          {% if h >= 12 %} {% assign TOD = "pm" %} {% else %} {% assign TOD = "am" %}{% endif %}
+          {% assign hofm = h | modulo:12 %}
+          {% if hofm == 0 %}{% assign dmod = 13 %}{% else %}{% assign dmod = 12 %}{% endif %}
+            {{ event.date | date_to_string }} at {{ h | modulo:dmod }}:{{ event.date | date: "%M" }} {{ TOD }} 
+          </h3>
+          {% endif %}
+          {% if event.location %}
+          <h3 class="cw-event-location">
+          {{ event.location }}
+          </h3>
+          {% endif %}
+          {% if event.presentation-data %}
+            <h3 class="event-page-presentation-data"><a href="{{ event.presentation-data }}">Read Accompanying Material</a></h3>
+          {% endif %}
+          <div class="cw-event-description">
+            <p>{{ event.content }}</p>
+          </div><!--cw-event-description-->
+        </div><!--cw-event-blob-->
+        {% assign count = count | plus:1 %}
+      {% endif %}
+    {% endfor %}
+    {% if count == 0 %}
+      <div class="cw-event-blob">
+        <h3 class="cw-event-title">
+        No Workshop This Week
+        </h3>
+      </div>
+    {% endif %}
+  </div><!--cw-event-->
+</div><!--current-workshop-->

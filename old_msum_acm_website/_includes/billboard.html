@@ -1,0 +1,106 @@
+<div id="billboard">
+
+  <div id="masthead">
+  </div><!-- /masthead -->
+  
+  <div id="billboard-logo" class="billboard-main-logo">
+    <a href="/">
+    <h1>msum acm</h1>
+    </a>
+  </div><!-- /billboard-logo -->
+
+  <div id="workshop" class="billboard-sub-projects"><!--pulls the workshop for this week-->
+    <a href="/events">
+    <h2>Workshops &amp; Events</h2>
+    {% assign count = 0 %}
+    {% for event in site.categories.events %}
+    {% assign smonth = site.time | date: "%m" | times:30 %}
+      {% assign pmonth = event.date | date: "%m" | times:30 %}
+      {% assign smonth = site.time | date: "%d" | plus:smonth %}
+      {% assign smonth = site.time | date: "%Y" | minus:2013 | times:365 | plus:smonth %}
+      {% assign pmonth = event.date | date: "%d" | plus:pmonth %}
+      {% assign pmonth = event.date | date: "%Y" | minus:2013 | times:365 | plus:pmonth %}
+      {% assign datediff = smonth | minus:pmonth %}
+      {% if datediff <= 0 and datediff > -7 %}
+      <p>{{ event.title }}</p>
+      {% assign count = 1 %}
+      {% break %}
+      {% endif %}
+    {% endfor %}
+    {% if count == 0 %}
+    <p>No Workshop This Week</p>
+    {% endif %}
+    </a>
+  </div><!-- /workshop -->
+
+  <div id="github" class="billboard-sub-projects">
+    <a target="_blank" href="https://github.com/MSUM-ACM/MSUM-ACM.github.io">   
+    <h2>This code is open sourced on</h2>
+    <p>github.com/MSUM-ACM &hellip;</p>
+    </a>
+  </div><!-- /github -->
+
+  <div id="notices" class="billboard-sub-projects">
+    <a href="/meetings">
+    <h2>Notices &amp; Meeting Updates</h2>
+    {% for info in site.categories.info %}
+      {% assign smonth = site.time | date: "%m" | times:30 %}
+      {% assign pmonth = info.date | date: "%m" | times:30 %}
+      {% assign smonth = site.time | date: "%d" | plus:smonth %}
+      {% assign smonth = site.time | date: "%Y" | minus:2013 | times:365 | plus:smonth %}
+      {% assign pmonth = info.date | date: "%d" | plus:pmonth %}
+      {% assign pmonth = info.date | date: "%Y" | minus:2013 | times:365 | plus:pmonth %}
+      {% assign datediff = smonth | minus:pmonth %}
+      {% if datediff < 0 and datediff > -30 %}
+        <p>{{ info.title }}</p>
+        {% if info.date %}<p class="date">{% assign h = info.date | date: "%-H" | plus:6 %}
+          {% if h >= 12 %} {% assign TOD = "pm" %} {% else %} {% assign TOD = "am" %}{% endif %}
+          {% assign hofm = h | modulo:12 %}
+          {% if hofm == 0 %}{% assign dmod = 13 %}{% else %}{% assign dmod = 12 %}{% endif %}
+            {{ info.date | date_to_string }} at {{ h | modulo:dmod }}:{{ info.date | date: "%M" }} {{ TOD }}</p>{% endif %}
+        {% assign isinfo = 1 %}
+        {% break %}
+      {% endif %}
+      {% endfor %}
+      {% if isinfo != 1 %}
+        <p>Currently No Reminders</p>
+      {% endif %}
+      </a>
+  </div><!-- /notices -->
+
+  <div id="meetings" class="billboard-sub-projects">
+    <h2>Weekly Meeting</h2>
+      {% for MInfo in site.data.meetinginfo %}
+        <p><a href="/acm">{{ MInfo.day }} {{ MInfo.time }} in {{ MInfo.location }}</a></p>
+      {% break %}
+    {% endfor %}
+  </div><!-- /meetings -->
+
+  <div id="tweets" class="billboard-sub-projects"> 
+    <a target="_blank" href="https://twitter.com/MSUMACM">
+    <h2>@MSUMACM</h2>
+    <p id="last-tweet"> 
+    <!--Generated from javascript Twitter fetcher-->
+    </p> 
+    </a>
+    </div><!-- /tweets -->
+  <div id="media" class="billboard-sub-projects">
+    <a href="/community">
+    <h2 id="community">ACM Communtiy<p>Get Involved</p></h2>
+    <p>Officers, Student Projects, and More!</p>
+    </a>
+  </div><!-- /media -->
+
+</div><!-- /billboard -->
+
+<!--Javascript to call the twitter fetcher application.  It pulls content from the MSUMACM account via a widget that is created on the account and pasting the id into the array below -->
+<script type="text/javascript" src="/assets/js/twitter/js/twitterFetcher_min.js"></script>
+<script type="text/javascript">
+var twitter1 = {
+  "id": '397373253900980224',
+  "domId": 'last-tweet',
+  "maxTweets": 1,
+  "enableLinks": true
+};
+twitterFetcher.fetch(twitter1);
+</script>
